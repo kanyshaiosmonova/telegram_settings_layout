@@ -23,22 +23,24 @@ class UserProfile extends StatelessWidget {
         appBar: AppBar(
           title: Text('Настройки'),
         ),
-        body: Container(
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _UserInfo(),
-              SizedBox(height: 30),
-              _MenuWidget(
-                menuRow: firstMenuRow,
-              ),
-              SizedBox(height: 30),
-              _MenuWidget(
-                menuRow: secondMenuRow,
-              ),
-            ],
+        body: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _UserInfo(),
+                SizedBox(height: 30),
+                _MenuWidget(
+                  menuRow: firstMenuRow,
+                ),
+                SizedBox(height: 30),
+                _MenuWidget(
+                  menuRow: secondMenuRow,
+                ),
+              ],
+            ),
           ),
         ));
   }
