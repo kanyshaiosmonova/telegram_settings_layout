@@ -15,6 +15,14 @@ class UserProfile extends StatelessWidget {
     MenuRowData(Icons.brush, 'Оформление'),
     MenuRowData(Icons.language, 'Язык'),
   ];
+  final List<MenuRowData> thirdMenuRow = [
+    MenuRowData(Icons.workspace_premium_outlined, 'Telegram premium'),
+  ];
+  final List<MenuRowData> fourthMenuRow = [
+    MenuRowData(Icons.chat_sharp, 'Задайте вопросы'),
+    MenuRowData(Icons.perm_device_information_sharp, 'Telegram FAQ'),
+    MenuRowData(Icons.policy_sharp, 'Политика конфиденциальности'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +31,28 @@ class UserProfile extends StatelessWidget {
         appBar: AppBar(
           title: Text('Настройки'),
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _UserInfo(),
-                SizedBox(height: 30),
-                _MenuWidget(
-                  menuRow: firstMenuRow,
-                ),
-                SizedBox(height: 30),
-                _MenuWidget(
-                  menuRow: secondMenuRow,
-                ),
-              ],
-            ),
+        body: Container(
+          width: double.infinity,
+          child: ListView(
+            children: [
+              _UserInfo(),
+              SizedBox(height: 30),
+              _MenuWidget(
+                menuRow: firstMenuRow,
+              ),
+              SizedBox(height: 30),
+              _MenuWidget(
+                menuRow: secondMenuRow,
+              ),
+              SizedBox(height: 30),
+              _MenuWidget(
+                menuRow: thirdMenuRow,
+              ),
+              SizedBox(height: 30),
+              _MenuWidget(
+                menuRow: fourthMenuRow,
+              ),
+            ],
           ),
         ));
   }
@@ -109,21 +121,35 @@ class _UserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      color: Colors.white,
-      child: Column(
-        children: [
-          SizedBox(height: 30),
-          _AvatarWidget(),
-          SizedBox(height: 30),
-          _UserNameWidget(),
-          SizedBox(height: 10),
-          _UserPhoneNameWidget(),
-          SizedBox(height: 10),
-          _UserNickNameWidget(),
-        ],
-      ),
+    return Stack(
+      children: [
+        Container(
+          width: double.infinity,
+          color: Colors.white,
+          child: Column(
+            children: [
+              SizedBox(height: 30),
+              _AvatarWidget(),
+              SizedBox(height: 30),
+              _UserNameWidget(),
+              SizedBox(height: 10),
+              _UserPhoneNameWidget(),
+              SizedBox(height: 10),
+              _UserNickNameWidget(),
+            ],
+          ),
+        ),
+        Positioned(
+            top: 25,
+            right: 25,
+            child: Text(
+              'Изм.',
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 18,
+              ),
+            ))
+      ],
     );
   }
 }
